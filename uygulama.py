@@ -1,4 +1,6 @@
-import getpass
+from flask import Flask, render_template, request
+
+app = Flask(__name__, template_folder='templates')
 
 # Kullanıcı veritabanınızı temsil etmek için basit bir sözlük
 user_database = {
@@ -6,22 +8,19 @@ user_database = {
     'kullanici2': 'parola456',
 }
 
+@app.route('/')
+def home():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
 def login():
-    print("Hoş geldiniz! Lütfen giriş yapın.")
+    username = request.form.get('username')
+    password = request.form.get('password')
 
-    # Kullanıcı adı ve parola girişi
-    username = input("Kullanıcı Adı: ")
-    password = getpass.getpass("Parola: ")  # Parolayı gizli şekilde almak için getpass modülünü kullan
-
-    # Veritabanında kullanıcı adı kontrolü
-    if username in user_database:
-        # Kullanıcı adı doğru, parolayı kontrol et
-        if user_database[username] == password:
-            print("Başarıyla giriş yaptınız!")
-        else:
-            print("Hatalı parola! Tekrar deneyin.")
+    if username in user_database and user_database[username] == password:
+        return f"Merhaba, {username}! Başarıyla giriş yaptınız."
     else:
-        print("Hatalı kullanıcı adı! Tekrar deneyin.")
+        return "Hatalı kullanıcı adı veya parola. Tekrar deneyin."
 
-# Giriş fonksiyonunu çağır
-login()
+if __name__ == '__main__':
+    app.run(debug=True)
