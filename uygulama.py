@@ -23,4 +23,4 @@ def login():
         return "Hatalı kullanıcı adı veya parola. Tekrar deneyin."
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
