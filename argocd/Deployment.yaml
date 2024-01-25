@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulut_bilisim_odevi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bulut_bilisim_odev
+  template:
+    metadata:
+      labels:
+        app: bulut_bilisim_odev
+    spec:
+      containers:
+      - name: bulut_bilisim_odevi_kub
+        image: rasit289/bulut_bilisim_container:latest
+        ports:
+        - containerPort: 8080
