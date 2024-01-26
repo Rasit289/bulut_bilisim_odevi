@@ -4,7 +4,7 @@ metadata:
   name: my-app-pod
 spec:
   containers:
-    - name: my-app-container
-      image: your-docker-image:tag
+    - name: bulut_bilisim_pod
+      image: rasit289/bulut_bilisim_container:v5
       ports:
         - containerPort: 8080
