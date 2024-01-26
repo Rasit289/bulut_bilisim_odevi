@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: bulut-bilisim-odevi-kub
-        image: rasit289/bulut_bilisim_container:latest
+        image: rasit289/bulut_bilisim_container:v5
         ports:
         - containerPort: 8080
